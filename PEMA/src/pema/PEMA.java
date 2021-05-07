@@ -6,6 +6,9 @@
 package pema;
 
 import javax.swing.JOptionPane;
+import clases.*;
+import formularios.*;
+import java.sql.Connection;
 
 /**
  *
@@ -16,10 +19,11 @@ public class PEMA {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        JOptionPane.showMessageDialog(null, "Hello Word!");
+        //Abrir ventana de login
+        Login login=new Login();
+        login.setVisible(true); 
     }
     
 }
