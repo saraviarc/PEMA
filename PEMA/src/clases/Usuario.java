@@ -19,7 +19,15 @@ public class Usuario {
     
     //Método constructor por defecto
     public Usuario(){
-    };
+    }
+    
+    public Usuario(String nombre, String contraseña,String cargo, String estado, String codigoUsuario){
+        this.nombre=nombre;
+        this.contraseña=contraseña;
+        this.cargo=cargo;
+        this.estado=estado;
+        this.codigoUsuario=codigoUsuario;
+    }
     //Métodos
     
     //Métodos Get y Set

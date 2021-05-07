@@ -24,6 +24,11 @@ public class PEMA {
         //Abrir ventana de login
         Login login=new Login();
         login.setVisible(true); 
+//        String entero;
+//        Usuario katherine = new Usuario();
+//        katherine.setNombre("Katherine");
+//        System.out.println(katherine.getNombre());
+        
     }
     
 }
