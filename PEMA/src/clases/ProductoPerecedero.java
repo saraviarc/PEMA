@@ -11,19 +11,27 @@ package clases;
  */
 public class ProductoPerecedero {
     //Atributos
-    private int codigoProducto;
+    private String codigoProducto;
     private String nombre;
     private String um;
     private String tipo;//Verdura, Pan, Carne
     //Método constructor por defecto
     public ProductoPerecedero(){
     }
+
+    public ProductoPerecedero(String codigoProducto, String nombre, String um, String tipo) {
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.um = um;
+        this.tipo = tipo;
+    }
+    
     //Métodos Get y Set
-    public int getCodigoProducto() {
+    public String getCodigoProducto() {
         return codigoProducto;
     }
 
-    public void setCodigoProducto(int codigoProducto) {
+    public void setCodigoProducto(String codigoProducto) {
         this.codigoProducto = codigoProducto;
     }
 

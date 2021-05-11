@@ -29,12 +29,12 @@ public class Administrador {
     public void registrarEmpleado(String nombre, String contraseña, String cargo, String estado, String codigoUsuario){
         //Para crear la clase adecuada se debe identificar que cargo tendrá el usuario
         if("Supervisor".equals(cargo)){
-            Supervisor supervisor = new Supervisor();
-            supervisor.setNombre(nombre);
-            supervisor.setContraseña(contraseña);
-            supervisor.setCargo(cargo);
-            supervisor.setEstado(estado);
-            supervisor.setCodigoUsuario(codigoUsuario);
+//            Supervisor supervisor = new Supervisor();
+//            supervisor.setNombre(nombre);
+//            supervisor.setContraseña(contraseña);
+//            supervisor.setCargo(cargo);
+//            supervisor.setEstado(estado);
+//            supervisor.setCodigoUsuario(codigoUsuario);
         }
         else{
             if("Bodeguero".equals(cargo)){
@@ -48,12 +48,12 @@ public class Administrador {
             else{
                 //Si no es Supervisor ni Bodeguero, debe ser Vendedor
                 //Para Vendedor debe especificarse que tipo de vendedor es
-                Vendedor vendedor = new Vendedor();
-                vendedor.setNombre(nombre);
-                vendedor.setContraseña(contraseña);
-                vendedor.setCargo(cargo);
-                vendedor.setEstado(estado);
-                vendedor.setCodigoUsuario(codigoUsuario);
+//                Vendedor vendedor = new Vendedor();
+//                vendedor.setNombre(nombre);
+//                vendedor.setContraseña(contraseña);
+//                vendedor.setCargo(cargo);
+//                vendedor.setEstado(estado);
+//                vendedor.setCodigoUsuario(codigoUsuario);
             }
         }
     }

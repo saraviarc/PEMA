@@ -7,23 +7,23 @@ package formularios;
 //import 
 
 import clases.NuevoInicioSesion;
+import javax.swing.JOptionPane;
 import static sun.security.jgss.GSSUtil.login;
 
 /**
  *
  * @author Roberto Mendoza
  */
-public class MenuPrincipal extends javax.swing.JFrame {
-
+public class MenuPrincipalBodeguero extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipalBodeguero() {
         initComponents();
         //Habilitar menu correspondiente
-        mAdm.setEnabled(true);
+        mAdm.setEnabled(false);
         mSup.setEnabled(false);
-        mInv.setEnabled(false);
+        mInv.setEnabled(true);
         mV.setEnabled(false);
     }
 
@@ -42,17 +42,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mArc_inicioSesion = new javax.swing.JMenuItem();
         mArc_salir = new javax.swing.JMenuItem();
         mAdm = new javax.swing.JMenu();
-        mAdm_MaestroUsuarios = new javax.swing.JMenuItem();
         mSup = new javax.swing.JMenu();
         mInv = new javax.swing.JMenu();
-        mInv_crearProd = new javax.swing.JMenuItem();
+        mInv_maestroProd = new javax.swing.JMenuItem();
         mInv_ingresarProd = new javax.swing.JMenuItem();
-        mInv_editarProd = new javax.swing.JMenuItem();
         mInv_dspacharProd = new javax.swing.JMenuItem();
         mInv_verificarInv = new javax.swing.JMenuItem();
         mV = new javax.swing.JMenu();
-        mV_realizarV = new javax.swing.JMenuItem();
-        mV_solicitarProd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,7 +60,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
 
         mArc.setText("Archivo");
@@ -88,47 +84,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuBar.add(mArc);
 
         mAdm.setText("Administración");
-
-        mAdm_MaestroUsuarios.setText("Maestro de usuarios");
-        mAdm_MaestroUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mAdm_MaestroUsuariosActionPerformed(evt);
-            }
-        });
-        mAdm.add(mAdm_MaestroUsuarios);
-
         menuBar.add(mAdm);
 
-        mSup.setText("Supervisión");
+        mSup.setText("Supervisón");
         menuBar.add(mSup);
 
         mInv.setText("Inventario");
 
-        mInv_crearProd.setText("Crear producto");
-        mInv.add(mInv_crearProd);
+        mInv_maestroProd.setText("Maestro de productos");
+        mInv_maestroProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInv_maestroProdActionPerformed(evt);
+            }
+        });
+        mInv.add(mInv_maestroProd);
 
         mInv_ingresarProd.setText("Ingresar productos");
+        mInv_ingresarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInv_ingresarProdActionPerformed(evt);
+            }
+        });
         mInv.add(mInv_ingresarProd);
 
-        mInv_editarProd.setText("Editar producto");
-        mInv.add(mInv_editarProd);
-
         mInv_dspacharProd.setText("Despachar prodcuto");
+        mInv_dspacharProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInv_dspacharProdActionPerformed(evt);
+            }
+        });
         mInv.add(mInv_dspacharProd);
 
         mInv_verificarInv.setText("Verificar Inventario");
+        mInv_verificarInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInv_verificarInvActionPerformed(evt);
+            }
+        });
         mInv.add(mInv_verificarInv);
 
         menuBar.add(mInv);
 
         mV.setText("Ventas");
-
-        mV_realizarV.setText("Realizar venta");
-        mV.add(mV_realizarV);
-
-        mV_solicitarProd.setText("Solicitar productos");
-        mV.add(mV_solicitarProd);
-
         menuBar.add(mV);
 
         setJMenuBar(menuBar);
@@ -153,29 +150,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mAdm_MaestroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAdm_MaestroUsuariosActionPerformed
-        //Instanciar clase de tipo CrearUsuario
-        //Agregar a escritorio y mostrar
-        CrearUsuario ventanaCrearUsuario = new CrearUsuario();
-        escritorio.add(ventanaCrearUsuario);
-        ventanaCrearUsuario.show();
-    }//GEN-LAST:event_mAdm_MaestroUsuariosActionPerformed
-
     private void mArc_inicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mArc_inicioSesionActionPerformed
-//        IniciarSesion iniciarSesion = new IniciarSesion();
-//        escritorio.add(iniciarSesion);
-//        iniciarSesion.show();
         Login iniciarSesion = new Login();
-//        escritorio.add(iniciarSesion);
         iniciarSesion.setVisible(true);
         this.setVisible(false);
-//        if(nuevoIncioSesion.){
-//        }
     }//GEN-LAST:event_mArc_inicioSesionActionPerformed
 
     private void mArc_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mArc_salirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mArc_salirActionPerformed
+
+    private void mInv_maestroProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInv_maestroProdActionPerformed
+        MaestroProductos maestroProductos = new MaestroProductos();
+        escritorio.add(maestroProductos);
+        maestroProductos.show();
+    }//GEN-LAST:event_mInv_maestroProdActionPerformed
+
+    private void mInv_ingresarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInv_ingresarProdActionPerformed
+        //ELIMINADO POR ACCIDENTE
+        //IngresoProductos ingresoProductos = new IngresoProductos();
+        //escritorio.add(ingresoProductos);
+        //ingresoProductos.show();
+        JOptionPane.showMessageDialog(null, "Este menu aún está en mantenimiento");
+    }//GEN-LAST:event_mInv_ingresarProdActionPerformed
+
+    private void mInv_dspacharProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInv_dspacharProdActionPerformed
+        JOptionPane.showMessageDialog(null, "Este menu aún está en mantenimiento");
+    }//GEN-LAST:event_mInv_dspacharProdActionPerformed
+
+    private void mInv_verificarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInv_verificarInvActionPerformed
+        JOptionPane.showMessageDialog(null, "Este menu aún está en mantenimiento");
+    }//GEN-LAST:event_mInv_verificarInvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,8 +199,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipalBodeguero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
@@ -203,7 +209,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new MenuPrincipalBodeguero().setVisible(true);
             }
         });
     }
@@ -211,20 +217,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu mAdm;
-    private javax.swing.JMenuItem mAdm_MaestroUsuarios;
     private javax.swing.JMenu mArc;
     private javax.swing.JMenuItem mArc_inicioSesion;
     private javax.swing.JMenuItem mArc_salir;
     private javax.swing.JMenu mInv;
-    private javax.swing.JMenuItem mInv_crearProd;
     private javax.swing.JMenuItem mInv_dspacharProd;
-    private javax.swing.JMenuItem mInv_editarProd;
     private javax.swing.JMenuItem mInv_ingresarProd;
+    private javax.swing.JMenuItem mInv_maestroProd;
     private javax.swing.JMenuItem mInv_verificarInv;
     private javax.swing.JMenu mSup;
     private javax.swing.JMenu mV;
-    private javax.swing.JMenuItem mV_realizarV;
-    private javax.swing.JMenuItem mV_solicitarProd;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 }

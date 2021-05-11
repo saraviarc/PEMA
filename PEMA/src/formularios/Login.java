@@ -5,7 +5,16 @@
  */
 package formularios;
 
+import clases.Conexion;
+import clases.NuevoInicioSesion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JMenuBar.*;
 
 /**
  *
@@ -13,11 +22,31 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
+    //Conexion a la base de datos para buscar los usuarios
+    Conexion conexion = new Conexion();
+    Connection con = null;
+    //Variable para ejectutar una consulta a la base de datos
+    PreparedStatement ps;
+    //Variable para almacenar el resultado de la consulta
+    ResultSet res;
+
+    //Almacenaje de 
+    public String usuarioInicioSesion;//no es necesario
+//
+//    public String getUsuarioInicioSesion() {
+//        return usuarioInicioSesion;
+//    }
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        //Relaizar conexion a BD
+        con = conexion.getConexion();
+        //Mostrar estado de conexion a bd
+        //JOptionPane.showMessageDialog(null,conexion.getEstadoConexion());
+        //lblEstadoConexion.setText(conexion.getEstadoConexion());
     }
 
     /**
@@ -33,13 +62,13 @@ public class Login extends javax.swing.JFrame {
         lblContraseña = new javax.swing.JLabel();
         txtCodigoUsuario = new javax.swing.JTextField();
         lblPEMA = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblIngreseCredenciales = new javax.swing.JLabel();
         btnIniciarSesion_Login = new javax.swing.JButton();
         btnSalir_Login = new javax.swing.JButton();
         pwContraseña = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Iniciar Sesión");
 
         lblCodigoUsuario.setText("Codigo de Usuario");
 
@@ -47,7 +76,7 @@ public class Login extends javax.swing.JFrame {
 
         lblPEMA.setText("SISTEMA DE GESTION DEL AREA DE PERECEDEROS ");
 
-        jLabel1.setText("Ingrese sus credenciales");
+        lblIngreseCredenciales.setText("PEMA");
 
         btnIniciarSesion_Login.setText("Iniciar sesión");
         btnIniciarSesion_Login.addActionListener(new java.awt.event.ActionListener() {
@@ -63,45 +92,41 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("admin/admin");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblPEMA)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnIniciarSesion_Login)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalir_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCodigoUsuario)
+                                    .addComponent(lblContraseña))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigoUsuario)
+                                    .addComponent(pwContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPEMA)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnIniciarSesion_Login)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                    .addComponent(btnSalir_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblCodigoUsuario)
-                                        .addComponent(lblContraseña)
-                                        .addComponent(jLabel2))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCodigoUsuario)
-                                        .addComponent(pwContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel1)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGap(109, 109, 109)
+                        .addComponent(lblIngreseCredenciales)))
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(lblPEMA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblIngreseCredenciales, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigoUsuario)
                     .addComponent(txtCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,44 +134,87 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseña)
                     .addComponent(pwContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciarSesion_Login)
                     .addComponent(btnSalir_Login))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalir_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir_LoginActionPerformed
-        //this.setVisible(false);
+        //Salir de la ejecución del programa
         System.exit(0);
-        
+
     }//GEN-LAST:event_btnSalir_LoginActionPerformed
 
     private void btnIniciarSesion_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion_LoginActionPerformed
         // Almacenar en las siguientes variables los datos ingresados
-        String codigoUsuario=txtCodigoUsuario.getText();
-        String contraseña=new String (pwContraseña.getPassword());
-        /*Validar que los ninguno de ambos campos queden vacíos, 
+        String codigoUsuario = txtCodigoUsuario.getText();
+        String contraseña = new String(pwContraseña.getPassword());
+        String estado;
+        /*Validar que ninguno de ambos campos queden vacíos, 
         indicandole al usuario*/
-        if (((codigoUsuario.isEmpty())||(contraseña.isEmpty()))){
+        if (((codigoUsuario.isEmpty()) || (contraseña.isEmpty()))) {
             JOptionPane.showMessageDialog(null, "No dejar campos vacíos");
-        }
-        else{
-            if(("admin".equals(codigoUsuario))&&("admin".equals(contraseña))){
-                Menu abrirMenuAdmin = new Menu();
-                //Cierra el Login actual
+        } else {
+            if (("admin".equals(codigoUsuario)) && ("admin".equals(contraseña))) {
+                //Instanciamos una clase que almacene el usuario que iniciara sesión
+                NuevoInicioSesion nuevoInicioSesion = new NuevoInicioSesion(codigoUsuario, contraseña);
+                //Cierra la ventana de inicio de sesion actual
                 this.setVisible(false);
-                //Abre menu administrador
-                abrirMenuAdmin.setVisible(true);
-            }
-            else{
-                //Buscar usuario en tabla y validar, si no existe mostrar mensjase
-                JOptionPane.showMessageDialog(null, "Usuario no registrado");
+                //Instancia de la clase MenuPrincipal que accederá el Administrador
+                MenuPrincipal menu = new MenuPrincipal();
+                menu.setVisible(true);
+
+            } else {
+                try {
+                    String tbUsuariosCodigoUsuario;
+                    String tbUsuariosContraseñaUsuario;
+                    String tbUsuariosEstadoUsuario;
+                    String tbUsuariosCargo;
+                    //Buscar usuario en tabla y validar, si no existe mostrar mensjase
+                    //Ejecutar la consulta en tabla tb_usuarios de la BD
+                    ps = con.prepareStatement("SELECT * FROM tb_usuarios WHERE codigoUsuario=?");
+                    ps.setString(1, codigoUsuario);
+                    res = ps.executeQuery();
+                    //Validar si la consulta tiene resultados
+                    if (res.next()) {
+                        tbUsuariosCodigoUsuario = res.getString("codigoUsuario");
+                        tbUsuariosContraseñaUsuario = res.getString("contraseña");
+                        tbUsuariosEstadoUsuario = res.getString("estado");
+                        tbUsuariosCargo = res.getString("cargo");
+                        //Validar si el usuario ha digitado correctamente sus credenciales
+                        //y si esta habilitado para ingresar al sistema
+                        if ((tbUsuariosCodigoUsuario.equals(codigoUsuario)) && (tbUsuariosContraseñaUsuario.equals(contraseña)) && ("Habilitado".equals(tbUsuariosEstadoUsuario))) {
+                            if ("Bodeguero".equals(tbUsuariosCargo)) {
+                                MenuPrincipalBodeguero menu = new MenuPrincipalBodeguero();
+                                this.setVisible(false);
+                                menu.setVisible(true);
+                            } else {
+                                if ("Vendedor".equals(tbUsuariosCargo)) {
+                                    JOptionPane.showMessageDialog(null, "Este menu aún está en mantenimiento");
+                                } else {
+                                    //Sino es vendedor ni bodeguero debe ser supervisor
+                                    //Aún no hay menú para este tipo de usuario
+                                    JOptionPane.showMessageDialog(null, "Este menu aún está en mantenimiento");
+                                    txtCodigoUsuario.setText("");
+                                    pwContraseña.setText("");
+                                }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Datos incorrectos o ha sido"
+                                    + " deshabilitado del sistema, comuniquese con el administrador");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuario no registrado");
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 txtCodigoUsuario.setText("");
                 pwContraseña.setText("");
             }
@@ -191,10 +259,9 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion_Login;
     private javax.swing.JButton btnSalir_Login;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCodigoUsuario;
     private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblIngreseCredenciales;
     private javax.swing.JLabel lblPEMA;
     private javax.swing.JPasswordField pwContraseña;
     private javax.swing.JTextField txtCodigoUsuario;

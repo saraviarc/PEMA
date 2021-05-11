@@ -20,14 +20,19 @@ public class PEMA {
      * @param args the command line arguments
      */
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         //Abrir ventana de login
         Login login=new Login();
-        login.setVisible(true); 
-//        String entero;
-//        Usuario katherine = new Usuario();
-//        katherine.setNombre("Katherine");
-//        System.out.println(katherine.getNombre());
+        login.setVisible(true);
+
+        
+        //Conexion a la base de datos
+//        Conexion conexion = new Conexion();
+//        conexion.getConexion();
+        
+        //Abrir ventana menu principarl
+//        MenuPrincipal menu = new MenuPrincipal();
+//        menu.setVisible(true);
         
     }
     
